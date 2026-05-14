@@ -298,7 +298,7 @@
             gap: 12px;
         }
 
-        /* Footer Section */
+        /* Footer Section - LTR style for credit line */
         .footer-section {
             max-width: 1300px;
             margin: 10px auto 20px;
@@ -313,6 +313,12 @@
             height: 1px;
             background: linear-gradient(to right, transparent, #F0DFC8, #F0DFC8, transparent);
             margin-bottom: 15px;
+        }
+        .developer-credit {
+            direction: ltr;
+            unicode-bidi: embed;
+            display: inline-block;
+            width: 100%;
         }
         .developer-link {
             color: var(--primary);
@@ -595,25 +601,20 @@
     <div id="menuGrid" class="menu-grid"></div>
 </div>
 
-<!-- Footer Section with line and WhatsApp link -->
+<!-- Footer Section with line and WhatsApp link (LTR credit line) -->
 <div class="footer-section">
     <hr class="footer-line">
-
     <div class="developer-credit">
-        <i class="fab fa-whatsapp whatsapp-icon"></i>
-
-        <span>Developed by</span>
-
-        <a
-            href="https://wa.me/201013706142?text=مرحباً%20عبدالقادر،%20أحب%20قائمة%20كشري%20الزعيم"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="developer-link"
-        >
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i> Developed by 
+        <a href="https://wa.me/201013706142?text=مرحباً%20عبدالقادر،%20أحب%20قائمة%20كشري%20الزعيم" 
+           target="_blank" 
+           class="developer-link"
+           rel="noopener noreferrer">
             Abdelkader Mohamed
         </a>
     </div>
 </div>
+
 <!-- Bottom Category Bar (curved, horizontally scrollable on mobile, no scrollbar) -->
 <div class="categories-bar">
     <div class="categories-scroll" id="bottomCategories"></div>

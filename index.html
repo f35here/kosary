@@ -21,7 +21,7 @@
             font-family: 'Be Vietnam Pro', sans-serif;
             background-color: #FEF9EF;
             color: #1E2F26;
-            padding-bottom: 85px;
+            padding-bottom: 100px;
             scroll-behavior: smooth;
         }
 
@@ -140,31 +140,35 @@
             font-family: 'Space Grotesk';
         }
 
-        /* Categories bottom bar - SMALLER size */
+        /* Categories bottom bar - curved, no scroll, wrapping, space on sides */
         .categories-bar {
             position: fixed;
-            bottom: 0;
+            bottom: 12px;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
-            border-top: 1px solid #FADDB7;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
             z-index: 25;
-            padding: 6px 8px;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: thin;
         }
 
         .categories-scroll {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-radius: 56px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(241, 136, 37, 0.3);
+            padding: 10px 18px;
             display: flex;
-            gap: 10px;
+            flex-wrap: wrap;
             justify-content: center;
-            flex-wrap: nowrap;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 10px;
+            align-items: center;
+            gap: 12px;
+            max-width: 95%;
+            width: auto;
+            margin: 0 16px;
+            pointer-events: auto;
+            transition: all 0.2s;
         }
 
         .cat-bottom-item {
@@ -172,15 +176,16 @@
             flex-direction: column;
             align-items: center;
             background: var(--neutral);
-            padding: 5px 14px;
-            border-radius: 40px;
+            padding: 6px 16px;
+            border-radius: 50px;
             gap: 4px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             border: 1px solid #F0DFC8;
             font-family: 'Space Grotesk', monospace;
             font-weight: 600;
             font-size: 0.75rem;
+            white-space: nowrap;
         }
 
         .cat-bottom-item i {
@@ -204,7 +209,7 @@
         .menu-container {
             max-width: 1300px;
             margin: 25px auto 30px;
-            padding: 0 20px;
+            padding: 0 20px 20px;
         }
 
         .menu-grid {
@@ -220,8 +225,6 @@
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             box-shadow: var(--shadow-sm);
             border: 1px solid #FBEAD4;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .menu-card:hover {
@@ -417,7 +420,7 @@
         /* branches panel */
         .branches-panel {
             position: fixed;
-            bottom: 85px;
+            bottom: 95px;
             right: 20px;
             background: white;
             border-radius: 28px;
@@ -471,10 +474,17 @@
             .brand-text h1 { font-size: 1.1rem; }
             .logo-img { width: 42px; height: 42px; }
             .icon-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-            .cat-bottom-item { padding: 4px 12px; font-size: 0.7rem; }
+            .cat-bottom-item { padding: 5px 12px; font-size: 0.7rem; white-space: nowrap; }
+            .categories-scroll { gap: 8px; padding: 8px 14px; border-radius: 44px; }
             .menu-grid { gap: 18px; }
             .card-img { height: 150px; }
             .item-title { font-size: 1rem; }
+        }
+
+        /* adjust for very small screens */
+        @media (max-width: 520px) {
+            .cat-bottom-item { padding: 4px 10px; font-size: 0.65rem; }
+            .categories-scroll { gap: 6px; }
         }
     </style>
 </head>
@@ -521,7 +531,7 @@
     <div id="menuGrid" class="menu-grid"></div>
 </div>
 
-<!-- Bottom Category Bar (small size) -->
+<!-- Bottom Category Bar (curved, no scroll, wrapping, spaced) -->
 <div class="categories-bar">
     <div class="categories-scroll" id="bottomCategories"></div>
 </div>
@@ -541,7 +551,7 @@
 
 <script>
     // ----------------------------------------------
-    // MENU DATA with images (same as before)
+    // MENU DATA with images
     const menuCatalog = {
         "تيك اواي": [
             { name: "كشري زعيم (حار)", price: 55, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "أرز، مكرونة، عدس، صلصة سرية" },
@@ -602,17 +612,15 @@
     };
 
     let activeCategory = "تيك اواي";
-    let cart = []; // { id, name, price, img, quantity, category }
+    let cart = [];
 
-    // Helper functions
     function generateId(name, category) { return `${category}_${name.replace(/\s/g,'')}`; }
 
-    // Save cart to localStorage
+    // LocalStorage
     function saveCartToLocal() {
         localStorage.setItem('koshary_cart', JSON.stringify(cart));
     }
 
-    // Load cart from localStorage
     function loadCartFromLocal() {
         const saved = localStorage.getItem('koshary_cart');
         if (saved) {
@@ -623,30 +631,36 @@
         }
     }
 
-    // Update badge & total
     function updateCartUI() {
         const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
         document.getElementById("cartBadge").innerText = totalItems;
         saveCartToLocal();
     }
 
-    // Sweet alert after adding item
+    // SMALL SweetAlert after adding item
     function showAddedAlert(itemName) {
         Swal.fire({
             icon: 'success',
             title: 'تمت الإضافة',
-            text: `تمت اضافة ${itemName} الى طلبك`,
+            text: `✨ ${itemName} ✨ أضيف إلى طلبك`,
             toast: true,
             position: 'top-start',
             showConfirmButton: false,
-            timer: 1800,
+            timer: 1600,
             timerProgressBar: true,
-            background: '#fff8ef',
+            width: '280px',
+            padding: '0.6rem',
+            customClass: {
+                popup: 'small-sweet',
+                title: 'swal-title-small',
+                htmlContainer: 'swal-text-small'
+            },
+            background: '#fffdf8',
             iconColor: '#2E6B43'
         });
     }
 
-    // Add item to cart
+    // Add item
     function addItemToCart(name, price, img, category) {
         const id = generateId(name, category);
         const existing = cart.find(i => i.id === id);
@@ -684,7 +698,7 @@
         });
     }
 
-    // Render categories (small style)
+    // Render categories (wrapping, curved bar)
     function renderBottomCategories() {
         const container = document.getElementById("bottomCategories");
         container.innerHTML = "";
@@ -696,6 +710,8 @@
                 activeCategory = cat;
                 renderBottomCategories();
                 renderMenuGrid();
+                // smooth scroll to top of menu
+                document.querySelector('.menu-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
             container.appendChild(btn);
         });
@@ -738,7 +754,7 @@
         });
     }
 
-    // Render cart modal content with dynamic delete all inside modal
+    // Render cart modal content
     function renderCartModalContent() {
         const container = document.getElementById("cartItemsList");
         if (cart.length === 0) {
@@ -768,7 +784,6 @@
         const total = cart.reduce((s,i) => s + (i.price * i.quantity), 0);
         document.getElementById("modalTotalPrice").innerHTML = `الإجمالي: ${total.toFixed(2)} ج.م`;
 
-        // attach events for inc/dec/remove
         document.querySelectorAll(".decr-item").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 let idx = parseInt(btn.getAttribute("data-idx"));
@@ -811,7 +826,7 @@
     deleteAllBtn.addEventListener("click", emptyCartWithConfirm);
     window.addEventListener("click", (e) => { if (e.target === modal) closeModalFunc(); });
 
-    // Branches & location
+    // Branches
     const locationBtn = document.getElementById("locationIconBtn");
     const branchesPanelDiv = document.getElementById("branchesPanel");
     locationBtn.addEventListener("click", (e) => {
@@ -832,7 +847,7 @@
         });
     });
 
-    // Load from localStorage on init
+    // Init
     loadCartFromLocal();
     renderBottomCategories();
     renderMenuGrid();

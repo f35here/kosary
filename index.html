@@ -169,6 +169,7 @@
             margin: 0 16px;
             pointer-events: auto;
             transition: all 0.2s;
+            overflow-x: visible;
         }
 
         .cat-bottom-item {
@@ -469,22 +470,43 @@
             color: #AA9C86;
         }
 
-        /* responsive */
+        /* Responsive: mobile category bar - perfect wrapping, no scroll, curved and spaced */
         @media (max-width: 680px) {
             .brand-text h1 { font-size: 1.1rem; }
             .logo-img { width: 42px; height: 42px; }
             .icon-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-            .cat-bottom-item { padding: 5px 12px; font-size: 0.7rem; white-space: nowrap; }
-            .categories-scroll { gap: 8px; padding: 8px 14px; border-radius: 44px; }
+            
+            .categories-scroll {
+                padding: 8px 14px;
+                gap: 8px;
+                border-radius: 44px;
+                max-width: 96%;
+                margin: 0 12px;
+            }
+            .cat-bottom-item {
+                padding: 5px 12px;
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
             .menu-grid { gap: 18px; }
             .card-img { height: 150px; }
             .item-title { font-size: 1rem; }
         }
 
-        /* adjust for very small screens */
-        @media (max-width: 520px) {
-            .cat-bottom-item { padding: 4px 10px; font-size: 0.65rem; }
-            .categories-scroll { gap: 6px; }
+        /* extra small devices: ensure categories never overflow horizontally */
+        @media (max-width: 480px) {
+            .categories-scroll {
+                padding: 8px 12px;
+                gap: 6px;
+                border-radius: 40px;
+            }
+            .cat-bottom-item {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+            }
+            .cat-bottom-item i {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -531,7 +553,7 @@
     <div id="menuGrid" class="menu-grid"></div>
 </div>
 
-<!-- Bottom Category Bar (curved, no scroll, wrapping, spaced) -->
+<!-- Bottom Category Bar (curved, wrapping, no scroll, spaced) -->
 <div class="categories-bar">
     <div class="categories-scroll" id="bottomCategories"></div>
 </div>
@@ -637,7 +659,7 @@
         saveCartToLocal();
     }
 
-    // SMALL SweetAlert after adding item
+    // COMPACT SweetAlert after adding item
     function showAddedAlert(itemName) {
         Swal.fire({
             icon: 'success',
@@ -646,10 +668,10 @@
             toast: true,
             position: 'top-start',
             showConfirmButton: false,
-            timer: 1600,
+            timer: 1500,
             timerProgressBar: true,
-            width: '280px',
-            padding: '0.6rem',
+            width: '270px',
+            padding: '0.5rem',
             customClass: {
                 popup: 'small-sweet',
                 title: 'swal-title-small',
@@ -660,7 +682,7 @@
         });
     }
 
-    // Add item
+    // Add item to cart
     function addItemToCart(name, price, img, category) {
         const id = generateId(name, category);
         const existing = cart.find(i => i.id === id);
@@ -698,7 +720,7 @@
         });
     }
 
-    // Render categories (wrapping, curved bar)
+    // Render categories (wrapping, curved bar, no scroll)
     function renderBottomCategories() {
         const container = document.getElementById("bottomCategories");
         container.innerHTML = "";
@@ -710,7 +732,6 @@
                 activeCategory = cat;
                 renderBottomCategories();
                 renderMenuGrid();
-                // smooth scroll to top of menu
                 document.querySelector('.menu-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
             container.appendChild(btn);
@@ -742,7 +763,7 @@
                 </div>
             </div>
         `).join("");
-        // attach events
+        // attach add events
         document.querySelectorAll(".add-to-cart").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 const name = btn.getAttribute("data-name");
@@ -826,7 +847,7 @@
     deleteAllBtn.addEventListener("click", emptyCartWithConfirm);
     window.addEventListener("click", (e) => { if (e.target === modal) closeModalFunc(); });
 
-    // Branches
+    // Branches & location
     const locationBtn = document.getElementById("locationIconBtn");
     const branchesPanelDiv = document.getElementById("branchesPanel");
     locationBtn.addEventListener("click", (e) => {
@@ -847,7 +868,7 @@
         });
     });
 
-    // Init
+    // Initialize
     loadCartFromLocal();
     renderBottomCategories();
     renderMenuGrid();

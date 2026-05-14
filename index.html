@@ -209,7 +209,7 @@
         /* menu grid + smooth transitions */
         .menu-container {
             max-width: 1300px;
-            margin: 25px auto 30px;
+            margin: 25px auto 15px;
             padding: 0 20px 20px;
         }
 
@@ -296,6 +296,39 @@
         .add-to-cart:hover {
             background: var(--primary-dark);
             gap: 12px;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            max-width: 1300px;
+            margin: 10px auto 20px;
+            padding: 0 20px 15px;
+            text-align: center;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.8rem;
+            color: #5D6E5A;
+        }
+        .footer-line {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #F0DFC8, #F0DFC8, transparent);
+            margin-bottom: 15px;
+        }
+        .developer-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .developer-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        .footer-section i {
+            font-size: 0.85rem;
         }
 
         /* Cart Modal */
@@ -481,7 +514,7 @@
                 overflow-x: auto;
                 justify-content: flex-start;
                 -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Firefox: hide scrollbar */
+                scrollbar-width: none;
                 gap: 10px;
                 padding: 8px 16px;
                 border-radius: 44px;
@@ -489,7 +522,7 @@
                 margin: 0 12px;
             }
             .categories-scroll::-webkit-scrollbar {
-                display: none; /* Chrome/Safari: hide scrollbar */
+                display: none;
             }
             .cat-bottom-item {
                 padding: 6px 14px;
@@ -502,7 +535,7 @@
             .item-title { font-size: 1rem; }
         }
 
-        /* extra small devices: fine-tune spacing */
+        /* extra small devices */
         @media (max-width: 480px) {
             .categories-scroll {
                 padding: 6px 14px;
@@ -560,6 +593,20 @@
 <!-- Menu Grid -->
 <div class="menu-container">
     <div id="menuGrid" class="menu-grid"></div>
+</div>
+
+<!-- Footer Section with line and WhatsApp link -->
+<div class="footer-section">
+    <hr class="footer-line">
+    <div>
+        <i class="fab fa-whatsapp" style="color: #25D366;"></i> Developed by 
+        <a href="https://wa.me/201013706142?text=مرحباً%20عبدالقادر،%20أحب%20قائمة%20كشري%20الزعيم" 
+           target="_blank" 
+           class="developer-link"
+           rel="noopener noreferrer">
+            Abdelkader Mohamed
+        </a>
+    </div>
 </div>
 
 <!-- Bottom Category Bar (curved, horizontally scrollable on mobile, no scrollbar) -->

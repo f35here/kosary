@@ -933,105 +933,66 @@
         //  DATA
         // ═══════════════════════════════════════════════════════════
 
-        const menuCatalog = {
-            "تيك اواي": [
-                { name: "كشري زعيم (حار)", price: 55, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop",
-                    desc: "أرز، مكرونة، عدس، صلصة سرية" },
-                { name: "كشري بالخلطة الملكية", price: 65, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=260&fit=crop",
-                    desc: "مع دقة البصل والحمص" },
-                { name: "ساندوتش طعمية الزعيم", price: 25, img: "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=400&h=260&fit=crop",
-                    desc: "طعمية مقرمشة، سلطة، طحينة" },
-                { name: "ساندوتش كبدة اسكندراني", price: 45, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=260&fit=crop",
-                    desc: "كبدة فرش، بهارات خاصة" },
-                { name: "فتة بالخل", price: 48, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=260&fit=crop",
-                    desc: "خبز محمر، أرز، خلطة ثوم" }
+                const menuCatalog = {
+            "تيك واي": [
+                { name: "سوبر شبح", price: 30, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "طبق تيك واي مميز" },
+                { name: "سوبر الزعيم", price: 40, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "طبق تيك واي خاص" },
+                { name: "محمد ومالك", price: 50, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "طبق تيك واي عائلي" },
+                { name: "طبق (z)", price: 60, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "طبق تيك واي زد" },
+                { name: "ابو مالك", price: 70, img: "https://images.unsplash.com/photo-1585664811087-47c65abbdf1c?w=400&h=260&fit=crop", desc: "طبق تيك واي كبير" }
             ],
             "طواجن": [
-                { name: "طاجن كبدة بالبصل", price: 85, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=260&fit=crop",
-                    desc: "في صوص غني" },
-                { name: "طاجن بانيه بالجبنة", price: 79, img: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2c8?w=400&h=260&fit=crop",
-                    desc: "صدور دجاج مع جبنة موتزاريلا" },
-                { name: "طاجن لحم بالخضار", price: 110, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=260&fit=crop",
-                    desc: "لحم بقر طري" },
-                { name: "طاجن سجق حار", price: 75, img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=400&h=260&fit=crop",
-                    desc: "سجق بلدي مع فلفل" }
+                { name: "لحمه", price: 35, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=260&fit=crop", desc: "طاجن لحم" },
+                { name: "فراخ", price: 40, img: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2c8?w=400&h=260&fit=crop", desc: "طاجن فراخ" }
             ],
             "طواجن موزريلا": [
-                { name: "طاجن فراخ موزاريلا", price: 95, img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=260&fit=crop",
-                    desc: "دجاج، جبن موزاريلا، فطر" },
-                { name: "طاجن لحم بموزاريلا", price: 125, img: "https://images.unsplash.com/photo-1569058242567-97a6b72ec19f?w=400&h=260&fit=crop",
-                    desc: "لحم عجل مع جبنة ذائبة" },
-                { name: "طاجن كفتة موزريلا", price: 99, img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=260&fit=crop",
-                    desc: "كفتة مشوية بالجبن" }
+                { name: "لحمه موزيلا", price: 55, img: "https://images.unsplash.com/photo-1569058242567-97a6b72ec19f?w=400&h=260&fit=crop", desc: "طاجن لحم مع موزريلا" },
+                { name: "فراخ موزيلا", price: 60, img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=260&fit=crop", desc: "طاجن فراخ مع موزريلا" },
+                { name: "لحمه موزيلا كبير", price: 110, img: "https://images.unsplash.com/photo-1569058242567-97a6b72ec19f?w=400&h=260&fit=crop", desc: "طاجن لحم كبير مع موزريلا" },
+                { name: "فراخ موزيلا كبير", price: 120, img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=260&fit=crop", desc: "طاجن فراخ كبير مع موزريلا" }
             ],
-            "طواجن دوبل و ميكس": [
-                { name: "طاجن سوبر ميكس", price: 135, img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=260&fit=crop",
-                    desc: "لحمة، فراخ، كبدة، سجق" },
-                { name: "طاجن دوبل كبدة وسجق", price: 99, img: "https://images.unsplash.com/photo-1598514983667-dfcc0a31b04b?w=400&h=260&fit=crop",
-                    desc: "مزيج غني بالبهارات" },
-                { name: "طاجن ميكس البحر المتوسط", price: 140, img: "https://images.unsplash.com/photo-1551326844-4df70f78d0c9?w=400&h=260&fit=crop",
-                    desc: "لحم ضأن و دجاج" }
+            "طواجن دوبل وميكس": [
+                { name: "لحمه كبير", price: 70, img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=260&fit=crop", desc: "طاجن لحم كبير" },
+                { name: "فراخ كبير", price: 80, img: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2c8?w=400&h=260&fit=crop", desc: "طاجن فراخ كبير" },
+                { name: "فراخ ميكس", price: 55, img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=260&fit=crop", desc: "طاجن فراخ ميكس" },
+                { name: "لحمه ميكس", price: 50, img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=260&fit=crop", desc: "طاجن لحم ميكس" }
             ],
+            // NEW "الاضافات" category with items from request
             "الاضافات": [
-                { name: "رز مبهر", price: 18, img: "https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=400&h=260&fit=crop",
-                    desc: "أرز مصري بالشعرية" },
-                { name: "مكرونة صوص", price: 20, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=260&fit=crop",
-                    desc: "صوص طماطم حار" },
-                { name: "صوص ثومية زعيم", price: 12, img: "https://images.unsplash.com/photo-1559847844-5a0f15b1e0bc?w=400&h=260&fit=crop",
-                    desc: "طازجة يومياً" },
-                { name: "خبز بلدي", price: 8, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=260&fit=crop",
-                    desc: "خبز طازج" },
-                { name: "سلطة حارة", price: 15, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop",
-                    desc: "جرجير، فلفل، ليمون" }
+                { name: "إضافة موزيلا", price: 20, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=260&fit=crop", desc: "إضافة موزيلا" },
+                { name: "إضافة حمص", price: 10, img: "https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=400&h=260&fit=crop", desc: "إضافة حمص" },
+                { name: "إضافة صلصة", price: 10, img: "https://images.unsplash.com/photo-1559847844-5a0f15b1e0bc?w=400&h=260&fit=crop", desc: "إضافة صلصة" },
+                { name: "إضافة تقليه", price: 10, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop", desc: "إضافة تقليه" },
+                { name: "إضافة عدس", price: 10, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=260&fit=crop", desc: "إضافة عدس" },
+                { name: "إضافة توست", price: 10, img: "https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=400&h=260&fit=crop", desc: "إضافة توست" },
+                { name: "إضافة خضراء", price: 10, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=260&fit=crop", desc: "إضافة خضراء" }
             ],
             "الحلو": [
-                { name: "أم علي", price: 45, img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=260&fit=crop",
-                    desc: "بقلاوة، لبن، مكسرات" },
-                { name: "أرز بلبن", price: 35, img: "https://images.unsplash.com/photo-1589302168068-964664d93fe0?w=400&h=260&fit=crop",
-                    desc: "قرفة ومكسرات" },
-                { name: "كنافة بالقشطة", price: 55, img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&h=260&fit=crop",
-                    desc: "جبنة حلوة وقشطة" },
-                { name: "قطايف مقلية", price: 40, img: "https://images.unsplash.com/photo-1586255482911-8abf2d643957?w=400&h=260&fit=crop",
-                    desc: "عسل وجوز" }
-            ],
-            "اضافات الحلو": [
-                { name: "مكسرات مشكلة", price: 20, img: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=260&fit=crop",
-                    desc: "لوز، جوز، فستق" },
-                { name: "قشطة بلدي", price: 18, img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=260&fit=crop",
-                    desc: "قشطة طازجة" },
-                { name: "عسل نحل أصلي", price: 15, img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=260&fit=crop",
-                    desc: "عسل جبلي" },
-                { name: "سيرب (قطر)", price: 12, img: "https://images.unsplash.com/photo-1588515721836-0f8f8dd90069?w=400&h=260&fit=crop",
-                    desc: "قطر سميك" }
+                { name: "أرز بلبن فرن", price: 15, img: "https://images.unsplash.com/photo-1589302168068-964664d93fe0?w=400&h=260&fit=crop", desc: "أرز بلبن بالفرن" },
+                // moved from old "اضافات" to "الحلو"
+                { name: "قشطة", price: 5, img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=260&fit=crop", desc: "قشطة طازجة" },
+                { name: "عسل", price: 5, img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=260&fit=crop", desc: "عسل نحل أصلي" },
+                { name: "مكسرات", price: 5, img: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=260&fit=crop", desc: "مكسرات مشكلة" }
             ],
             "المشروبات": [
-                { name: "عصير قصب", price: 25, img: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=260&fit=crop",
-                    desc: "طبيعي 100%" },
-                { name: "عصير ليمون نعناع", price: 22, img: "https://images.unsplash.com/photo-1618204851868-1296604b3f5c?w=400&h=260&fit=crop",
-                    desc: "منعش" },
-                { name: "مياه غازية", price: 10, img: "https://images.unsplash.com/photo-1616118132534-381f8985b50e?w=400&h=260&fit=crop",
-                    desc: "كوكاكولا / سبرايت" },
-                { name: "شاي بالحليب", price: 18, img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=260&fit=crop",
-                    desc: "شاي أحمر" },
-                { name: "قهوة تركية", price: 20, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=260&fit=crop",
-                    desc: "هيل أو سادة" }
+                { name: "كانز", price: 15, img: "https://images.unsplash.com/photo-1616118132534-381f8985b50e?w=400&h=260&fit=crop", desc: "مشروب غازي" },
+                { name: "مياة صغيره", price: 6, img: "https://images.unsplash.com/photo-1616118132534-381f8985b50e?w=400&h=260&fit=crop", desc: "مياة صغيرة" },
+                { name: "مياة كبيرة", price: 10, img: "https://images.unsplash.com/photo-1616118132534-381f8985b50e?w=400&h=260&fit=crop", desc: "مياة كبيرة" }
             ]
         };
 
-        const categoryList = ["تيك اواي", "طواجن", "طواجن موزريلا", "طواجن دوبل و ميكس", "الاضافات", "الحلو", "اضافات الحلو",
-            "المشروبات"
-        ];
+        // Updated category list (order as requested)
+        const categoryList = ["تيك واي", "طواجن", "طواجن موزريلا", "طواجن دوبل وميكس", "الاضافات", "الحلو", "المشروبات"];
+
         const categoryIconMap = {
-            "تيك اواي": "fa-bag-shopping",
+            "تيك واي": "fa-bag-shopping",
             "طواجن": "fa-fire",
             "طواجن موزريلا": "fa-cheese",
-            "طواجن دوبل و ميكس": "fa-layer-group",
+            "طواجن دوبل وميكس": "fa-layer-group",
             "الاضافات": "fa-plus-circle",
             "الحلو": "fa-cake-candles",
-            "اضافات الحلو": "fa-candy-cane",
             "المشروبات": "fa-mug-hot"
         };
-
         // ── Branch WhatsApp numbers ──
         const BRANCH_PHONES = {
             'sanaa': '201060524239',   // 01060524239
